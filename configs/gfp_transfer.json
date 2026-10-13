@@ -1,0 +1,25 @@
+{
+  "dataset_csv": "data/gfp_benchmark_v1/singles.csv",
+  "msa_npz": "features/msat.npz",
+  "esmc_npz": "features/esmc600m_features.npz",
+  "protenix_npz": "features/protenix_pairformer_features.npz",
+  "schemes": ["fold_random_5", "fold_modulo_5", "fold_contiguous_5"],
+  "arms": [
+    "base_msa",
+    "concat",
+    "balanced_concat",
+    "reconstruction",
+    "predictor_guided"
+  ],
+  "coefficients": [8.0, 0.5, 0.05],
+  "reconstruction_alpha": 0.5,
+  "seed": 42,
+  "epochs": 60,
+  "hidden_width": 64,
+  "guide_svr": {"C": 0.25, "epsilon": 0.02, "gamma_multiplier": 1.0},
+  "svr_grid": {
+    "C": [0.025, 0.25, 2.5],
+    "gamma_multiplier": [0.1, 1.0, 10.0],
+    "epsilon": 0.02
+  }
+}
