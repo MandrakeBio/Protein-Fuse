@@ -135,4 +135,3 @@ Each scheme writes:
 - Predictor-guided mappers train through cross-fit frozen SVR guides: a guide never scores a row it was fit on.
 - Outer held-out labels are replaced by `NaN` before fitting any mapper.
 - Output directories must be new; the runner refuses to overwrite previous results.
-# protein_gym_rep_transfer
