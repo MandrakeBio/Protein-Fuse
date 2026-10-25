@@ -8,7 +8,7 @@ from typing import Any
 import numpy as np
 
 from .config import ExperimentConfig, load_config
-from .data import FeatureBlocks, GFPDataset, load_dataset, load_feature_blocks
+from .data import FeatureBlocks, ProteinDataset, load_dataset, load_feature_blocks
 from .io import sha256_file, write_csv, write_json
 from .methods import (
     Standardizer,
@@ -88,7 +88,7 @@ def arm_features(
 
 def run_scheme(
     cfg: ExperimentConfig,
-    data: GFPDataset,
+    data: ProteinDataset,
     features: FeatureBlocks,
     scheme: str,
     arms: tuple[str, ...],
@@ -177,7 +177,7 @@ def run(args: argparse.Namespace) -> None:
 
 
 def parser() -> argparse.ArgumentParser:
-    p = argparse.ArgumentParser(prog="gfp-transfer")
+    p = argparse.ArgumentParser(prog="protein-fuse")
     sub = p.add_subparsers(dest="cmd", required=True)
     run_p = sub.add_parser("run")
     run_p.add_argument("--config", type=Path, required=True)

@@ -19,7 +19,7 @@ REQUIRED_COLUMNS = {
 
 
 @dataclass(frozen=True)
-class GFPDataset:
+class ProteinDataset:
     rows: list[dict[str, str]]
     variant_ids: np.ndarray
     mutants: np.ndarray
@@ -52,7 +52,7 @@ class FeatureBlocks:
         return ("protenix_pair_mean", "protenix_pair_site", "esmc_l12")
 
 
-def load_dataset(path: Path) -> GFPDataset:
+def load_dataset(path: Path) -> ProteinDataset:
     with Path(path).open(newline="") as handle:
         rows = list(csv.DictReader(handle))
     if not rows:
@@ -72,7 +72,7 @@ def load_dataset(path: Path) -> GFPDataset:
     y = np.asarray([float(row["DMS_score"]) for row in rows], dtype=np.float64)
     if not np.isfinite(y).all():
         raise ValueError("DMS_score must be finite for every row")
-    return GFPDataset(rows, variant_ids, mutants, sequences, y)
+    return ProteinDataset(rows, variant_ids, mutants, sequences, y)
 
 
 def _as_str(handle: np.lib.npyio.NpzFile, key: str) -> np.ndarray:
@@ -95,7 +95,7 @@ def load_feature_blocks(
     msa_npz: Path,
     esmc_npz: Path,
     protenix_npz: Path,
-    data: GFPDataset,
+    data: ProteinDataset,
 ) -> FeatureBlocks:
     n = len(data.y)
 

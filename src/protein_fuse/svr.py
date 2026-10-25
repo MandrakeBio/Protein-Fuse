@@ -33,13 +33,13 @@ def fit_svr(x: np.ndarray, y: np.ndarray, params: SVRParams) -> SVR:
         gamma=gamma_scale(x, params.gamma_multiplier),
     )
     model.fit(x, (y - y_mean) / y_std)
-    model._gfp_y_mean = y_mean
-    model._gfp_y_std = y_std
+    model._protein_fuse_y_mean = y_mean
+    model._protein_fuse_y_std = y_std
     return model
 
 
 def predict_svr(model: SVR, x: np.ndarray) -> np.ndarray:
-    return model.predict(x) * model._gfp_y_std + model._gfp_y_mean
+    return model.predict(x) * model._protein_fuse_y_std + model._protein_fuse_y_mean
 
 
 def candidate_params(grid: dict) -> list[SVRParams]:

@@ -3,9 +3,9 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "gfp-representation-transfer"
+name = "protein-fuse"
 version = "0.1.0"
-description = "GFP concatenation, reconstruction, and predictor-guided representation transfer"
+description = "Protein Fuse: latent translation for protein fitness prediction"
 requires-python = ">=3.10"
 dependencies = [
   "numpy>=1.24",
@@ -16,7 +16,7 @@ dependencies = [
 
 
 [project.scripts]
-gfp-transfer = "gfp_transfer.experiment:main"
+protein-fuse = "protein_fuse.experiment:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
